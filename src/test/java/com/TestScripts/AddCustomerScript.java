@@ -1,3 +1,10 @@
+/* Automation script to Add  an customer and validation 
+
+    Steps:1)Open the browser enter the Url
+          2)Fill the mandotary Details
+          3)Check Whether new account is created
+	  4)Use paremeterization 
+*/
 package com.TestScripts;
 
 import java.time.Duration;
