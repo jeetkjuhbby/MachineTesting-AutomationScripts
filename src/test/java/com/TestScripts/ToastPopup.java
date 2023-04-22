@@ -47,7 +47,7 @@ public class ToastPopup {
 		
 		String toastPopup=popupElement.getText();
 		
-		if(toastPopup.equals("\"Please Enter Correct Captcha\"")) {
+		if(toastPopup.equals("Please Enter Correct Captcha")) {
 			System.out.println("Test script passed");
 		}
 		else {
