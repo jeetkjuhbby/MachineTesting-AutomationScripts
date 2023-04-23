@@ -49,7 +49,9 @@ public class LoginScript {
 		WebElement password = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
 		wait.until(ExpectedConditions.visibilityOf(password)).sendKeys("admin");
 		WebElement loginButton = driver.findElement(By.id("kt_login_signin_submit"));
-		Thread.sleep(10000);
+		String str = JOptionPane.showInputDialog("Enter Your captcha");
+		WebElement captcha = driver.findElement(By.xpath("//input[@formcontrolname='captchaValue']"));
+		captcha.sendKeys(str);
 		loginButton.click();
 		WebElement actualErrorMessage = driver.findElement(By.xpath("//div[contains(text(),'Invalid Email Id / Mobile No or Password.')]"));
 		Assert.assertEquals(actualErrorMessage.getText(),"Invalid Email Id / Mobile No or Password.");
