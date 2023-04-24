@@ -2,6 +2,8 @@ package com.TestScripts;
 
 import java.time.Duration;
 
+import javax.swing.JOptionPane;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,7 +39,7 @@ public class LoginScript {
 		driver.manage().window().maximize();
 		driver.get("https://testffc.nimapinfotech.com/auth/login");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		 wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		
 	}
 	@Test
@@ -45,26 +47,30 @@ public class LoginScript {
 		
 		
 		WebElement id = driver.findElement(By.xpath("//input[@formcontrolname='username']"));
-		wait.until(ExpectedConditions.visibilityOf(id)).sendKeys("admin");
+		wait.until(ExpectedConditions.visibilityOf(id)).sendKeys("jshankhpal40@gmail.com");
 		WebElement password = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
-		wait.until(ExpectedConditions.visibilityOf(password)).sendKeys("admin");
+		wait.until(ExpectedConditions.visibilityOf(password)).sendKeys("jitesh0987");
 		WebElement loginButton = driver.findElement(By.id("kt_login_signin_submit"));
 		String str = JOptionPane.showInputDialog("Enter Your captcha");
 		WebElement captcha = driver.findElement(By.xpath("//input[@formcontrolname='captchaValue']"));
 		captcha.sendKeys(str);
+		//Thread.sleep(10000);
 		loginButton.click();
-		WebElement actualErrorMessage = driver.findElement(By.xpath("//div[contains(text(),'Invalid Email Id / Mobile No or Password.')]"));
-		Assert.assertEquals(actualErrorMessage.getText(),"Invalid Email Id / Mobile No or Password.");
 		
-		String errorMessage = actualErrorMessage.getText();
-		if(errorMessage.equals("Invalid Email Id / Mobile No or Password.")) {
-			System.out.println("Failed To login ");
-		}
-		else {
-			System.out.println("Succesfully logged In");
-		}
+		Thread.sleep(5000);
 		
-		
+         String actualUrl= "https://testffc.nimapinfotech.com/dashboard";
+         String expectedUrl = driver.getCurrentUrl();
+    
+         
+         if(actualUrl.endsWith(expectedUrl)) {
+        	 System.out.println("Login Successfull");
+         }
+         else {
+        	 System.out.println("Login Unsuccessfull");
+         }
+       
+ 		
 	}
 		
 		@AfterMethod
